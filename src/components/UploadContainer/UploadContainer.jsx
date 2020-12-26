@@ -54,7 +54,7 @@ function UploadContainer() {
       ) : (
         <>
           <h2>Upload your image</h2>
-          <h4>File should be Jpeg, Png,...</h4>
+          <h3>File should be Jpeg, Png,...</h3>
 
           <MyDropzone
             setPreview={setPreview}
@@ -63,7 +63,7 @@ function UploadContainer() {
             setSuccess={setSuccess}
             setUploadUrl={setUploadUrl}
           />
-          <h4>Or</h4>
+          <h3>Or</h3>
           <label htmlFor="img" role="button">
             Choose a file
           </label>

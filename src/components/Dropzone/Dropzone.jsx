@@ -43,7 +43,12 @@ function MyDropzone({ setPreview, setLoading, setSuccess, setUploadUrl }) {
   return (
     <div {...getRootProps()} className={styles.container}>
       <input {...getInputProps()} />
-      <img src="assets/image.svg" alt="" />
+      <img
+        src="assets/image.svg"
+        alt="background"
+        width="300px"
+        height="200px"
+      />
       <span>Drag & Drop your image here</span>
     </div>
   );
