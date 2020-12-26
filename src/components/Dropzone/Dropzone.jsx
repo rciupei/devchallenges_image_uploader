@@ -1,30 +1,44 @@
 import React, { useCallback } from "react";
 import { useDropzone } from "react-dropzone";
+import { upload } from "../UploadContainer/UploadContainer";
 import styles from "./Dropzone.module.scss";
 
-function MyDropzone({ setPreview }) {
+function MyDropzone({ setPreview, setLoading, setSuccess, setUploadUrl }) {
   const onDrop = useCallback(
     (acceptedFiles) => {
-      console.log(acceptedFiles);
-      acceptedFiles.forEach((file) => {
-        //   const reader = new FileReader();
+      setLoading(true);
 
-        //   reader.onabort = () => console.log("file reading was aborted");
-        //   reader.onerror = () => console.log("file reading has failed");
-        //   reader.onload = () => {
-        //     // Do whatever you want with the file contents
-        //     const binaryStr = reader.result;
-        //     console.log(binaryStr);
+      if (!acceptedFiles.length) {
+        console.log("too many files");
+        setLoading(false);
+      }
+      acceptedFiles.forEach((file) => {
         let img = URL.createObjectURL(file);
-        console.log(img);
         setPreview(img);
-        //   };
-        //   reader.readAsArrayBuffer(file);
+        var formdata = new FormData();
+        formdata.append("img", file, file.name);
+        upload(formdata)
+          .then((response) => response.json())
+          .then((result) => {
+            setLoading(false);
+            setUploadUrl(result.secure_url);
+            setSuccess(true);
+
+            console.log(result);
+          })
+          .catch((error) => {
+            setLoading(false);
+            console.log("error", error);
+          });
       });
     },
-    [setPreview]
+    [setPreview, setLoading, setUploadUrl, setSuccess]
   );
-  const { getRootProps, getInputProps } = useDropzone({ onDrop });
+  const { getRootProps, getInputProps } = useDropzone({
+    onDrop,
+    multiple: false,
+    noClick: true,
+  });
 
   return (
     <div {...getRootProps()} className={styles.container}>
