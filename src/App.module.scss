@@ -1,0 +1,14 @@
+.App {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 90vh;
+
+  h2 {
+    color: #4f4f4f;
+  }
+  h4 {
+    color: #828282;
+  }
+}

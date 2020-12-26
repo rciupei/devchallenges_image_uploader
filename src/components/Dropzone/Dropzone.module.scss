@@ -1,0 +1,27 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  background: #f6f8fb;
+  border: 1px dashed #97bef4;
+  border-radius: 12px;
+  width: 80%;
+  box-sizing: border-box;
+
+  img {
+    width: 100%;
+    height: auto;
+  }
+
+  span {
+    margin: 1rem 0;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 1rem;
+    line-height: 18px;
+    letter-spacing: -0.035em;
+    color: #bdbdbd;
+  }
+}
